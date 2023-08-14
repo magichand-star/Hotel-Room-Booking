@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module title="Захиалга" name="booking" multi="0" library="0" dashboard="1" icon="calendar-check-o" ranking="0" home="0" main="0" validation="0" dates="1" release="0" index="13">
+	<!-- resizing
+	[0] 1 single image
+	[1] 1x big, 1x medium, 1x small -->
+	<medias max="0" resizing="1">
+		<big maxw="1920" maxh="1440"/>
+		<medium maxw="600" maxh="600"/>
+		<small maxw="400" maxh="400"/>
+	</medias>
+	<list order="id DESC">
+        <filter label="Статус" name="status">
+            <options>
+                <option value="1">Хүлээгдэж байгаа</option>
+                <option value="2">Цуцлагдсан</option>
+                <option value="3">Төлбөр цуцлагдсан</option>
+                <option value="4">Төлбөр хийгдсэн</option>
+            </options>
+        </filter>
+		<col label="Өрөө" name="room"/>
+		<col label="Хэрэглэгч" name="lastname firstname"/>
+		<col label="Захиалсан он, сар" name="add_date" type="date"/>
+		<col label="Буудалд бүртгүүлэх" name="from_date" type="date"/>
+		<col label="Буудалаас гарах" name="to_date" type="date"/>
+		<col label="Шөнө" name="nights"/>
+		<col label="Насанд хүрэгч" name="adults"/>
+		<col label="Хүүхэд" name="children"/>
+		<col label="Нийт" name="total" type="price"/>
+	</list>
+	<form>
+        <field multi="0" label="Өрөө" name="id_room" type="select" required="1" unique="0" validation="none">
+            <options table="pm_room" fieldlabel="title" fieldvalue="id" order="title"></options>
+        </field>
+        <field multi="0" label="Өрөө(бүтэн нэрээр нь)" name="room" type="text" required="1" unique="0" validation="none"/>
+        <field multi="0" label="Буудалд бүртгүүлэх" name="from_date" type="date" required="1" unique="0" validation="none"/>
+        <field multi="0" label="Буудалаас гарах" name="to_date" type="date" required="1" unique="0" validation="none"/>
+        <field multi="0" label="Шөнө" name="nights" type="text" required="1" unique="0" validation="numeric"/>
+        <field multi="0" label="Насанд хүрсэн иргэд" name="adults" type="text" required="1" unique="0" validation="numeric"/>
+        <field multi="0" label="Хүүхэд" name="children" type="text" required="0" unique="0" validation="numeric"/>
+        <field multi="0" label="Нийт" name="amount" type="text" required="1" unique="0" validation="numeric" comment="{currency} (incl. VAT)"/>
+        <field multi="0" label="Аялалын нөат" name="tourist_tax" type="text" required="1" unique="0" validation="numeric" comment="{currency}"/>
+        <field multi="0" label="Нийт" name="total" type="text" required="1" unique="0" validation="numeric" comment="{currency} (incl. VAT)"/>
+        <field multi="0" label="Бага төлөлт" name="down_payment" type="text" required="0" unique="0" validation="numeric" comment="{currency} (incl. VAT)"/>
+        <field multi="0" label="Үйлчилгээнүүд" name="extra_services" type="text" required="0" unique="0" validation="none"/>
+        <field multi="0" label="Нэр" name="firstname" type="text" required="1" unique="0" validation="none"/>
+        <field multi="0" label="Овог" name="lastname" type="text" required="1" unique="0" validation="none"/>
+        <field multi="0" label="И-мэйл" name="email" type="text" required="1" unique="0" validation="none"/>
+        <field multi="0" label="Утас" name="phone" type="text" required="1" unique="0" validation="none"/>
+        <field multi="0" label="Сэтгэгдэл" name="comments" type="textarea" editor="0" required="0" unique="0" validation="none"/>
+        <field multi="0" label="Статус" name="status" type="select" required="1" unique="0" validation="none">
+            <options>
+                <option value="1">Хүлээгдэж байгаа</option>
+                <option value="2">Цуцлагдсан</option>
+                <option value="3">Төлбөр цуцлагдсан</option>
+                <option value="4">Төлбөр төлөгдсөн</option>
+            </options>
+        </field>
+        <field multi="0" label="Төлбөр төлөх хэлбэр" name="payment_method" type="text" required="0" unique="0" validation="none"/>
+        <field multi="0" label="Гүйлгээний дугаар" name="trans" type="text" required="0" unique="0" validation="none"/>
+        <field multi="0" label="Төлбөр төлөх он, сар" name="payment_date" type="datetime" required="0" unique="0" validation="none"/>
+        <table label="Идэвхитэй" name="booking_activity" fieldref="id_booking">
+            <field multi="0" label="Гарчиг" name="title" type="text" required="1" unique="0" validation="none"/>
+            <field multi="0" label="Насанд хүрэгчид" name="adults" type="text" required="0" unique="0" validation="numeric"/>
+            <field multi="0" label="Хүүхэд" name="children" type="text" required="0" unique="0" validation="numeric"/>
+            <field multi="0" label="Үргэлжлэх хугацаа" name="duration" type="text" required="1" unique="0" validation="none"/>
+            <field multi="0" label="Он,сар" name="date" type="datetime" required="1" unique="0" validation="none"/>
+            <field multi="0" label="Нийт" name="amount" type="text" required="1" unique="0" validation="numeric" comment="{currency} (incl. VAT)"/>
+        </table>
+	</form>
+    <roles>
+        <user type="administrator" permissions="all"/>
+        <user type="manager" permissions="no_access"/>
+        <user type="editor" permissions="no_access"/>
+    </roles>
+</module>

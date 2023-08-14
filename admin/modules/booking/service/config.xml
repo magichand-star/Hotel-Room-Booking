@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module title="Үйлчилгээ" name="service" multi="1" library="0" dashboard="0" icon="thumbs-up" ranking="1" home="0" main="0" validation="1" dates="0" release="0" index="17">
+	<!-- resizing
+	[0] 1 single image
+	[1] 1x big, 1x medium, 1x small -->
+	<medias max="0" resizing="1">
+		<big maxw="1920" maxh="1440"/>
+		<medium maxw="600" maxh="600"/>
+		<small maxw="400" maxh="400"/>
+	</medias>
+	<list order="rank">
+		<col label="Нэр" name="title" type="none"/>
+		<col label="Багц" name="type"/>
+		<col label="Үнэ" name="price" type="price"/>
+	</list>
+	<form>
+		<field multi="1" label="Нэр" name="title" type="text" required="1" unique="0" validation="none"/>
+		<field multi="1" label="Товч тайлбар" name="descr" type="textarea" editor="0" required="0" unique="0" validation="none"/>
+		<field multi="1" label="Дэлгэрэнгүй тайлбар" name="long_descr" type="textarea" editor="1" required="0" unique="0" validation="none"/>
+		<field multi="0" label="Үнийн төрөл" name="type" type="select" required="1" unique="0" validation="none">
+            <options>
+                <option value="night">Шөнө</option>
+                <option value="person">Хүн</option>
+                <option value="person-night">Хүн/шөнө</option>
+                <option value="package">Тохирсон үнэ</option>
+                <option value="qty">Тоо ширхэг</option>
+                <option value="qty-night">Тоо/шөнө</option>
+                <option value="qty-person-night">Тоо/хүн/шөнө</option>
+            </options>
+        </field>
+        <field multi="0" label="Үнэ" name="price" type="text" required="1" unique="0" validation="numeric" comment="{currency} (НӨАТ орсон)"/>
+        <field multi="0" label="НӨАТ хувь" name="vat_rate" type="text" required="1" unique="0" validation="numeric" comment="%"/>
+        <field multi="0" label="Өрөө" name="rooms" type="multiselect" required="0" unique="0" validation="none">
+			<options table="pm_room" fieldlabel="title" fieldvalue="id" order="title"/>
+		</field>
+	</form>
+    <roles>
+        <user type="administrator" permissions="all"/>
+        <user type="manager" permissions="no_access"/>
+        <user type="editor" permissions="no_access"/>
+        <user type="hotel" permissions="add,edit,upload"/>
+    </roles>
+</module>
